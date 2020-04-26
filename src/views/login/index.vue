@@ -57,15 +57,10 @@
           type="text"
           auto-complete="on"
         />
-        <!-- <div class="code_container">
-          <img :src="codeUrl" @click="getCode">
-        </div> -->
-        <span class="show-code" @click="showPwd">
-          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-          <!-- <img :src="codeUrl"> -->
+        <span class="show-code">
+          <img :src="codeUrl" @click="getLoginCode">
         </span>
       </el-form-item>
-
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
 
       <div style="position:relative">
@@ -97,6 +92,7 @@
 <script>
 import { validUsername } from '@/utils/validate'
 import SocialSign from './components/SocialSignin'
+import { getCodeImg } from '@/api/login'
 
 export default {
   name: 'Login',
@@ -127,6 +123,7 @@ export default {
         password: [{ required: true, trigger: 'blur', validator: validatePassword }],
         code: [{ required: true, trigger: 'blur' }]
       },
+      codeUrl: '',
       passwordType: 'password',
       capsTooltip: false,
       loading: false,
@@ -148,6 +145,7 @@ export default {
     }
   },
   created() {
+    this.getLoginCode()
     // window.addEventListener('storage', this.afterQRScan)
   },
   mounted() {
@@ -161,6 +159,13 @@ export default {
     // window.removeEventListener('storage', this.afterQRScan)
   },
   methods: {
+    // 获取验证码
+    getLoginCode() {
+      getCodeImg().then(res => {
+        this.codeUrl = res.img
+        this.loginForm.uuid = res.uuid
+      })
+    },
     checkCapslock({ shiftKey, key } = {}) {
       if (key && key.length === 1) {
         if (shiftKey && (key >= 'a' && key <= 'z') || !shiftKey && (key >= 'A' && key <= 'Z')) {
