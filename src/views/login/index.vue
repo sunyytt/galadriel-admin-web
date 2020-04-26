@@ -116,7 +116,8 @@ export default {
       loginForm: {
         username: 'admin',
         password: '111111',
-        code: ''
+        code: '',
+        uuid: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -162,8 +163,8 @@ export default {
     // 获取验证码
     getLoginCode() {
       getCodeImg().then(res => {
-        this.codeUrl = res.img
-        this.loginForm.uuid = res.uuid
+        this.codeUrl = res.data.img
+        this.loginForm.uuid = res.data.uuid
       })
     },
     checkCapslock({ shiftKey, key } = {}) {
@@ -191,9 +192,16 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+          const user = {
+            username: this.loginForm.username,
+            password: this.loginForm.password,
+            // rememberMe: this.loginForm.rememberMe,
+            code: this.loginForm.code,
+            uuid: this.loginForm.uuid
+          }
           this.loading = true
           // 请求路径为 api/user
-          this.$store.dispatch('user/login', this.loginForm)
+          this.$store.dispatch('user/login', user)
             .then(() => {
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
               this.loading = false

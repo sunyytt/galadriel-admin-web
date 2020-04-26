@@ -1,4 +1,4 @@
-import { loginApi, logoutApi, getInfoApi } from '@/api/user'
+import { loginApi, logoutApi, getInfoApi } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
@@ -31,9 +31,14 @@ const mutations = {
 const actions = {
   // user login
   login({ commit }, userInfo) {
-    const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      loginApi({ username: username.trim(), password: password })
+      const user = {
+        username: userInfo.username.trim(),
+        password: userInfo.password,
+        code: userInfo.code,
+        uuid: userInfo.uuid
+      }
+      loginApi(user)
         .then(response => {
           const { data } = response
           // 有用,下方有用 getInfo state.token

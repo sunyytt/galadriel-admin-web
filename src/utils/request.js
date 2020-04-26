@@ -44,19 +44,18 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-    const code = response.code
 
     // if the custom code is not 20000, it is judged as an error.
-    // 如果不是成功码00000
-    if (res.code !== process.env.VUE_SUCCESS_CODE) {
+    // 如果不是成功码000000
+    if (res.code !== '000000') {
       Message({
-        message: response.message || 'Error',
+        message: res.message || 'Error',
         type: 'error',
         duration: 5 * 1000
       })
 
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if (response.code === 50008 || response.code === 50012 || response.code === 50014) {
+      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
         // to re-login
         MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
           confirmButtonText: 'Re-Login',
@@ -68,7 +67,7 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error(response.message || 'Error'))
+      return Promise.reject(new Error(res.message || 'Error'))
     } else {
       return res
     }
