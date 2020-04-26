@@ -34,13 +34,20 @@ module.exports = {
       errors: true
     },
     proxy: {
+      '/api': {
+        target: process.env.VUE_APP_BASE_API,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': 'api'
+        }
+      },
       '/auth': {
         target: process.env.VUE_APP_BASE_API,
         changeOrigin: true,
         pathRewrite: {
           '^/auth': 'auth'
         }
-      },
+      }
       // mock 配置
       // change xxx-api/login => mock/login
       // detail: https://cli.vuejs.org/config/#devserver-proxy

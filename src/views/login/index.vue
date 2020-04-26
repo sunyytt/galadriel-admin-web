@@ -200,6 +200,7 @@ export default {
             })
             .catch(() => {
               this.loading = false
+              this.getLoginCode()
             })
         } else {
           console.log('error submit!!')
