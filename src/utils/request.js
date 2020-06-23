@@ -44,11 +44,10 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-    const code = response.code
 
     // if the custom code is not 20000, it is judged as an error.
-    // 如果不是成功码00000
-    if (code !== process.env.VUE_SUCCESS_CODE) {
+    // 如果不是成功码000000
+    if (res.code !== '000000') {
       Message({
         message: res.message || 'Error',
         type: 'error',
