@@ -132,6 +132,47 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
+    path: '/iframe',
+    component: Layout,
+    redirect: '/noredirect',
+    alwaysShow: true,
+    name: '第三方页面',
+    hidden: false,
+    meta: {
+      title: '第三方页面',
+      icon: 'system',
+      noCache: true
+    },
+    children: [
+      {
+        path: '/baidu',
+        component: () => import('@/views/iframe/baidu/index'),
+        name: 'User',
+        hidden: false,
+        meta: {
+          title: '百度',
+          icon: 'peoples',
+          noCache: true
+        },
+        iframe: true,
+        iframePath: 'https://www.baidu.com'
+      },
+      {
+        path: '/flowable',
+        component: () => import('@/views/iframe/flowable/index'),
+        name: 'User',
+        hidden: false,
+        meta: {
+          title: 'flowable',
+          icon: 'peoples',
+          noCache: true
+        },
+        iframe: true,
+        iframePath: 'http://localhost:8081/flowable-modeler-demo/#/processes'
+      }
+    ]
+  },
+  {
     path: '/system',
     component: Layout,
     redirect: '/noredirect',
