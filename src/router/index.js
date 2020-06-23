@@ -156,6 +156,32 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/flowable',
+    component: Layout,
+    redirect: '/noredirect',
+    alwaysShow: true,
+    name: '流程管理',
+    hidden: false,
+    meta: {
+      title: '流程管理',
+      icon: 'system',
+      noCache: true
+    },
+    children: [
+      {
+        path: 'flowable-bpmn',
+        component: () => import('@/views/flowable/bpmn/index'),
+        name: 'User',
+        hidden: false,
+        meta: {
+          title: 'bpmn',
+          icon: 'peoples',
+          noCache: true
+        }
+      }
+    ]
+  },
+  {
     path: '/permission',
     component: Layout,
     redirect: '/permission/page',

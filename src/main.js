@@ -18,6 +18,11 @@ import './permission' // permission control
 import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
+// 以下为bpmn工作流绘图工具的样式
+import 'bpmn-js/dist/assets/diagram-js.css' // 左边工具栏以及编辑节点的样式
+import 'bpmn-js/dist/assets/bpmn-font/css/bpmn.css'
+import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css'
+import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css'
 
 /**
  * If you don't want to use mock-server
