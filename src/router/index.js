@@ -130,6 +130,32 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
+    path: '/system',
+    component: Layout,
+    redirect: '/noredirect',
+    alwaysShow: true,
+    name: '系统管理',
+    hidden: false,
+    meta: {
+      title: '系统管理',
+      icon: 'system',
+      noCache: true
+    },
+    children: [
+      {
+        path: 'user',
+        component: () => import('@/views/system/user/index'),
+        name: 'User',
+        hidden: false,
+        meta: {
+          title: '用户管理',
+          icon: 'peoples',
+          noCache: true
+        }
+      }
+    ]
+  },
+  {
     path: '/permission',
     component: Layout,
     redirect: '/permission/page',
