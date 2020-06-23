@@ -174,7 +174,18 @@ export const asyncRoutes = [
         name: 'User',
         hidden: false,
         meta: {
-          title: 'bpmn',
+          title: '简单得bpmn',
+          icon: 'peoples',
+          noCache: true
+        }
+      },
+      {
+        path: 'flowable-bpmn2',
+        component: () => import('@/views/flowable/bpmn2/index'),
+        name: 'User',
+        hidden: false,
+        meta: {
+          title: '简单得bpmn2',
           icon: 'peoples',
           noCache: true
         }
