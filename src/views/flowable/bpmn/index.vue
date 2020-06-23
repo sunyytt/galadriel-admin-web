@@ -13,6 +13,7 @@
     <!--      (5) 放大/缩小：支持画布的放大与缩小，以及重置恢常正常大小。-->
     <!--      (6) 保存流程的模型到自己的定义数据库表，同时同步更新到act_de_model表中。-->
     <!--      (7) 节点属性面板的定制功能开发。-->
+<!--    参考 https://www.jianshu.com/p/5b6567fe6f4d-->
     <!--    </aside>-->
     <div class="canvas" ref="canvas"></div>
     <div id="js-properties-panel" class="panel"></div>

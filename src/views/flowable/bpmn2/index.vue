@@ -3,6 +3,7 @@
     <div class="loading" v-if="loading">
       Loading...
     </div>
+<!--    本页实现了保存bpmn,保存图片-->
     <template v-else>
       <div class="canvas" ref="canvas"></div>
       <div id="js-properties-panel" class="panel"></div>
