@@ -3,19 +3,19 @@
 import Layout from '@/layout'
 
 const flowAbleRouter = {
-  path: '/table',
+  path: '/flowable',
   component: Layout,
-  redirect: '/table/complex-table',
-  name: 'Table',
+  redirect: '/noredirect',
+  name: 'Flowable',
   meta: {
     title: '流程管理',
     icon: 'table'
   },
   children: [
     {
-      path: 'dynamic-table',
-      component: () => import('@/views/table/dynamic-table/index'),
-      name: 'DynamicTable',
+      path: 'modeler',
+      component: () => import('@/views/flowable/modeler/index'),
+      name: 'modeler',
       meta: { title: '流程模板' }
     },
     {
